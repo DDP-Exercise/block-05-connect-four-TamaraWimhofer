@@ -1,0 +1,195 @@
+:root {
+    --sky-blue: #5C94FC;
+    --mario-red: #E52521;
+    --bowser-green: #2ECC71;
+    --brick-brown: #924E4E;
+    --coin-gold: #F1C40F;
+    --border-dark: #4E2E2E;
+}
+
+body {
+    background-image: url("./img/background.jpg");
+    background-size: cover;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+    text-shadow: 3px 3px 0 #000;
+}
+
+#game-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-title {
+    font-size: 3.5rem;
+    margin: 10px 0;
+    letter-spacing: 2px;
+}
+
+#turn-wrapper {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.mario-turn #info-box-container {
+    border-color: var(--mario-red);
+}
+
+.bowser-turn #info-box-container {
+    border-color: var(--bowser-green);
+}
+
+#info-box-container {
+    background-color: rgba(45, 45, 45, 0.9);
+    border: 4px solid white;
+    border-radius: 10px;
+    padding: 10px 40px;
+    display: inline-block;
+    margin-bottom: 25px;
+    transition: border-color 0.3s ease;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(6, 75px);
+    grid-gap: 12px;
+    background: var(--brick-brown);
+    padding: 20px;
+    border: 8px solid var(--border-dark);
+    border-radius: 10px;
+    box-shadow: 0 15px 0 rgba(0,0,0,0.3), 0 20px 20px rgba(0,0,0,0.4);
+    opacity: 0.9;
+}
+
+.cell {
+    width: 75px;
+    height: 75px;
+    background: #222;
+    border-radius: 50%;
+    border: 5px solid #111;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    font-weight: bold;
+    transition: transform 0.1s;
+}
+
+.cell:hover {
+    transform: scale(1.05);
+}
+
+.mario {
+    box-shadow: inset -6px -6px 0 #8b0000;
+    background-image: url("./img/star.png");
+    background-size: cover;
+    background-position: center;
+}
+.mario::after { content: ''; }
+
+.bowser {
+    box-shadow: inset -6px -6px 0 #1d8348;
+    background-image: url("./img/panzer.png");
+    background-size: cover;
+    background-position: center;
+}
+.bowser::after { content: ''; }
+
+
+.winner {
+    animation: jump 0.5s infinite alternate ease-in-out;
+    border: 5px solid var(--coin-gold) !important;
+    box-shadow: 0 0 20px var(--coin-gold);
+    z-index: 10;
+}
+
+@keyframes jump {
+    from { transform: translateY(0) scale(1); }
+    to { transform: translateY(-15px) scale(1.1); }
+}
+
+.reset-btn {
+    margin-top: 40px;
+    padding: 15px 30px;
+    background: var(--coin-gold);
+    border: none;
+    border-bottom: 6px solid #C0392B;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+    text-shadow: none;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+
+.reset-btn:active {
+    transform: translateY(4px);
+    border-bottom-width: 2px;
+}
+
+.reset-btn:hover {
+    background: #ffdb4d;
+}
+
+.game-arena {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin: 20px 0;
+}
+
+.team-portrait img {
+    width: 400px;
+    height: auto;
+    filter: drop-shadow(10px 10px 20px rgba(0,0,0,0.9));
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: grayscale(0.6) brightness(0.7);
+    opacity: 0.7;
+}
+
+.mario-turn .team-portrait:first-child img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px var(--mario-red));
+}
+
+.mario-turn .mario-img img {
+    transform: scale(1.2) translateY(-10px);
+    filter: grayscale(0) brightness(1.1) drop-shadow(0 0 30px #FFD700);
+    opacity: 1;
+}
+
+.bowser-turn .team-portrait:last-child img {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 20px var(--bowser-green));
+}
+
+.bowser-turn .bowser-img img {
+    transform: scale(1.2) translateY(-10px);
+    filter: grayscale(0) brightness(1.1) drop-shadow(0 0 30px #FFD700);
+    opacity: 1;
+}
+
+@media (max-width: 900px) {
+    .game-arena {
+        flex-direction: column;
+    }
+
+    .team-portrait img {
+        width: 120px;
+    }
+}

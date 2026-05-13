@@ -1,11 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Connect Four</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four Bros</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!--TODO: Build the Markup for your Game. Don't forget to style it in a cascading stylesheet. -->
 
+<div id="game-container">
+    <header>
+        <h1 class="game-title">CONNECT FOUR...</h1>
+
+        <div id="info-box-container">
+            <h2 id="info-text">DIE SUPER MARIO BROS BEGINNEN!</h2>
+        </div>
+    </header>
+
+    <main>
+        <div id="turn-wrapper" class="mario-turn">
+            <div class="game-arena">
+                <div class="team-portrait mario-img">
+                    <img src="img/team1.png" alt="SuperMarioBros">
+                </div>
+
+                <div id="board"></div>
+
+                <div class="team-portrait bowser-img">
+                    <img src="img/team2.png" alt="BowserClan">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <button class="reset-btn" onclick="CONTROLLER.init()">LEVEL NEUSTARTEN</button>
+    </footer>
+</div>
+
+<script src="js/model.js"></script>
+<script src="js/view.polished.js"></script>
+<script src="js/controller.js"></script>
 </body>
 </html>
